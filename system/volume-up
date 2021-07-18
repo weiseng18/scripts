@@ -1,0 +1,2 @@
+#! /bin/bash
+amixer -c 1 set Master 5%+ ; kill -44 $(pidof dwmblocks)

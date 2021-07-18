@@ -1,0 +1,6 @@
+#! /bin/bash
+SCRIPTS_FOLDER=$REPOS/config/scripts
+
+for file in $SCRIPTS_FOLDER/system/*; do
+  ln -sf $file ~/.local/bin/
+done
