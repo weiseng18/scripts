@@ -1,6 +1,9 @@
 #! /bin/bash
 SCRIPTS_FOLDER=$REPOS/config/scripts
 
-for file in $SCRIPTS_FOLDER/system/*; do
+# append folders with spaces as necessary
+ACTUAL_FOLDERS="$SCRIPTS_FOLDER/system/*"
+
+for file in $ACTUAL_FOLDERS; do
   ln -sf $file ~/.local/bin/
 done
