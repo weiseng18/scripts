@@ -1,0 +1,28 @@
+#! /bin/bash
+
+# which directories to check
+# append space-separated locations as necessary
+CHECKS="$REPOS/config/*/"
+
+CURRENT=$PWD
+
+UNCOMMITTED=()
+
+# perform checks
+for d in $CHECKS; do
+  cd $d
+  # NF is an internal variable (number of fields)
+  NAME=$(pwd | awk -F/ '{print $(NF-1)"/"$NF}')
+  GIT_STATUS=$(git status -s)
+
+  # uncommitted changes
+  if [ -n "$GIT_STATUS" ]; then
+    UNCOMMITTED+=($NAME)
+  fi
+done
+
+# output
+echo "You have ${#UNCOMMITTED[@]} repos with uncommited changes"
+for d in ${UNCOMMITTED[@]}; do
+  echo -e $CYAN$d$ENDCOLOR
+done
