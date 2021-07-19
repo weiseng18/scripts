@@ -7,6 +7,7 @@ CHECKS="$REPOS/config/*/"
 CURRENT=$PWD
 
 UNCOMMITTED=()
+UNPUSHED=()
 
 # perform checks
 for d in $CHECKS; do
@@ -14,10 +15,14 @@ for d in $CHECKS; do
   # NF is an internal variable (number of fields)
   NAME=$(pwd | awk -F/ '{print $(NF-1)"/"$NF}')
   GIT_STATUS=$(git status -s)
+  GIT_CHERRY=$(git cherry -v)
 
   # uncommitted changes
   if [ -n "$GIT_STATUS" ]; then
     UNCOMMITTED+=($NAME)
+  # unpushed changes
+  elif [ -n "$GIT_CHERRY" ]; then
+    UNPUSHED+=($NAME)
   fi
 done
 
@@ -25,4 +30,9 @@ done
 echo "You have ${#UNCOMMITTED[@]} repos with uncommited changes"
 for d in ${UNCOMMITTED[@]}; do
   echo -e $CYAN$d$ENDCOLOR
+done
+
+echo "You have ${#UNPUSHED[@]} repos with unpushed changes"
+for d in ${UNPUSHED[@]}; do
+  echo -e $MAGENTA$d$ENDCOLOR
 done
