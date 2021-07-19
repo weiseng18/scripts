@@ -2,7 +2,7 @@
 SCRIPTS_FOLDER=$REPOS/config/scripts
 
 # append folders with spaces as necessary
-ACTUAL_FOLDERS="$SCRIPTS_FOLDER/system/*"
+ACTUAL_FOLDERS="$SCRIPTS_FOLDER/system/* $SCRIPTS_FOLDER/helper/*"
 
 for file in $ACTUAL_FOLDERS; do
   ln -sf $file ~/.local/bin/
