@@ -1,0 +1,2 @@
+#! /bin/bash
+sudo brightnessctl -d intel_backlight set +5%
