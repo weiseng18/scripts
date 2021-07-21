@@ -26,6 +26,9 @@ for d in $CHECKS; do
   fi
 done
 
+# go back to original working directory
+cd $CURRENT
+
 # output
 echo "You have ${#UNCOMMITTED[@]} repos with uncommited changes"
 for d in ${UNCOMMITTED[@]}; do
