@@ -1,2 +1,2 @@
 #! /bin/bash
-sudo brightnessctl -d intel_backlight set +5%; kill -44 $(pidof dwmblocks)
+xbacklight -inc 5; kill -44 $(pidof dwmblocks)

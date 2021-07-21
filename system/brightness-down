@@ -11,5 +11,5 @@ EOF
 )
 
 if [ $brightness -gt 5 ]; then
-  sudo brightnessctl -d intel_backlight set 5%-; kill -44 $(pidof dwmblocks)
+  xbacklight -dec 5; kill -44 $(pidof dwmblocks)
 fi
