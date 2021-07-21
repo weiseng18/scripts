@@ -1,2 +1,15 @@
 #! /bin/bash
-sudo brightnessctl -d intel_backlight set 5%-
+
+string=$(brightnessctl | awk 'c&&!--c;/Current/')
+
+brightness=$(python3 - $string << EOF
+import sys
+vol=sys.argv[4] # [56%]
+strip=vol[1:-2]
+print(strip)
+EOF
+)
+
+if [ $brightness -gt 5 ]; then
+  sudo brightnessctl -d intel_backlight set 5%-; kill -44 $(pidof dwmblocks)
+fi
