@@ -1,0 +1,23 @@
+#! /bin/bash
+
+FONT="#00ddff"
+
+RING_ACTION="#0dd902"
+RING_BASE="#6b34eb"
+
+i3lock \
+\
+--blur 5 \
+--ring-color=$RING_BASE \
+--keyhl-color=$RING_ACTION \
+--clock \
+--time-color=$FONT \
+--date-str="%A, %-d %b" \
+--date-color=$FONT \
+--layout-color=$FONT \
+
+# parameters
+# ==========
+# --inside-color => inner circle, when password not empty
+# --ring-color => ring base color
+# --keyhl-color => portion of ring, upon keypress
