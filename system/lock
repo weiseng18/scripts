@@ -1,6 +1,11 @@
 #! /bin/bash
 
+FF="Monospace Regular"
+
+ALPHA="88"
+
 FONT="#00ddff"
+INNER="#000000"
 
 RING_ACTION="#0dd902"
 RING_BASE="#6b34eb"
@@ -8,13 +13,19 @@ RING_BASE="#6b34eb"
 i3lock \
 \
 --blur 5 \
+--inside-color=$INNER$ALPHA \
 --ring-color=$RING_BASE \
 --keyhl-color=$RING_ACTION \
 --clock \
---time-color=$FONT \
 --date-str="%A, %-d %b" \
+--time-color=$FONT \
 --date-color=$FONT \
 --layout-color=$FONT \
+--time-font=$FF \
+--date-font=$FF \
+--layout-font=$FF \
+--verif-font=$FF \
+--wrong-font=$FF \
 
 # parameters
 # ==========
