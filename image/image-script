@@ -1,0 +1,52 @@
+#! /usr/bin/env python3
+
+import sys
+from PIL import Image
+
+def main():
+    # unpack args
+    args = sys.argv
+
+    # help
+    if len(args) == 1 or args[1] == "help":
+        print("image-script action")
+        print("\n---- image-script help ----")
+        print("displays this help menu")
+        print("\n---- image-script crop ----")
+        print("image-script crop filename new_width new_height ?output_filename\n")
+        print("new_width and new_height to be specified in pixels.")
+        print("output_filename is optional. If not provided, then the image crop is displayed only.")
+        return
+
+    action = args[1]
+
+    if action == "crop":
+        fileName = args[2]           # original image file name
+        crop_w = int(args[3])        # new width
+        crop_h = int(args[4])        # new height
+        outName = ""
+        if len(args) > 5:
+            outName = args[5]        # to save crop or not
+
+        # get image
+        im = Image.open(fileName)
+        (orig_w, orig_h) = im.size
+
+        # assume that crop area is the centre
+        left = (orig_w - crop_w) // 2
+        top = (orig_h - crop_h) // 2
+
+        # dynamically calculated
+        right = left + crop_w
+        bottom = top + crop_h
+
+        crop = im.crop((left, top, right, bottom))
+
+        if outName != "":
+            crop.save(outName)
+        else:
+            crop.show()
+    else:
+        print("Unknown action")
+
+main()
