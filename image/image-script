@@ -25,6 +25,14 @@ def cropImage(fileName, crop_w, crop_h, outName=""):
 
     return
 
+def scaleImage(fileName, scaleFactor, outName):
+    im = Image.open(fileName)
+    (w, h) = im.size
+    im = im.resize((int(w * scaleFactor), int(h * scaleFactor)), Image.LANCZOS)
+
+    im.save(outName)
+
+    return
 
 def main():
     # unpack args
@@ -56,6 +64,16 @@ def main():
         if LEN > 5:
             outName = args[5]        # to save crop or not
         cropImage(fileName, crop_w, crop_h, outName)
+
+    elif action == "scale":
+        if LEN < 4:
+            print("Insufficient arguments")
+            return
+
+        fileName = args[2]             # original image file name
+        scaleFactor = float(args[3])   # scaling factor (multiplier)
+        outName = args[4]
+        scaleImage(fileName, scaleFactor, outName)
 
     else:
         print("Unknown action")
