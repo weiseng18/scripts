@@ -6,9 +6,10 @@ from PIL import Image
 def main():
     # unpack args
     args = sys.argv
+    LEN = len(args)
 
     # help
-    if len(args) == 1 or args[1] == "help":
+    if LEN == 1 or args[1] == "help":
         print("image-script action")
         print("\n---- image-script help ----")
         print("displays this help menu")
@@ -21,11 +22,15 @@ def main():
     action = args[1]
 
     if action == "crop":
+        if LEN < 5:
+            print("Insufficient arguments")
+            return
+
         fileName = args[2]           # original image file name
         crop_w = int(args[3])        # new width
         crop_h = int(args[4])        # new height
         outName = ""
-        if len(args) > 5:
+        if LEN > 5:
             outName = args[5]        # to save crop or not
 
         # get image
