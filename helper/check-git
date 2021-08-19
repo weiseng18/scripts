@@ -2,7 +2,7 @@
 
 # which directories to check
 # append space-separated locations as necessary
-CHECKS="$REPOS/config/*/ $REPOS/notes/me/"
+CHECKS="$REPOS/config/*/ $REPOS/notes/uni"
 
 CURRENT=$PWD
 
