@@ -31,8 +31,8 @@ cd $CURRENT
 
 # output
 echo "You have ${#UNCOMMITTED[@]} repos with uncommited changes"
-for d in ${UNCOMMITTED[@]}; do
-  echo -e $CYAN$d$ENDCOLOR
+for d in "${!UNCOMMITTED[@]}"; do  # for d in indices of array
+  echo -e $CYAN${UNCOMMITTED[$d]}$ENDCOLOR
 done
 
 echo "You have ${#UNPUSHED[@]} repos with unpushed changes"
