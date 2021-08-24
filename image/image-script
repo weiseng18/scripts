@@ -48,6 +48,9 @@ def main():
         print("image-script crop filename new_width new_height ?output_filename\n")
         print("new_width and new_height to be specified in pixels.")
         print("output_filename is optional. If not provided, then the image crop is displayed only.")
+        print("\n---- image-script scale ----")
+        print("image-script scale filename scaleFactor output_filename\n")
+        print("scaleFactor is normalized. 1.0 means original size.")
         return
 
     action = args[1]
