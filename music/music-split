@@ -1,0 +1,39 @@
+#! /usr/bin/python3
+
+'''
+Sample track_list
+00:00:00 00:02:00 01_file
+00:02:00 00:04:00 02_file
+'''
+
+import subprocess
+import sys
+
+def main():
+    if len(sys.argv) != 3:
+        print("Usage: music-split <original_track> <track_list>")
+        return
+
+    original_track = sys.argv[1]
+    track_list = sys.argv[2]
+
+    cmd_string = "ffmpeg -i " + original_track + " -acodec copy -ss {st} -to {en} {nm}.mp3"
+
+    with open(track_list, "r") as file:
+        for line in file:
+            # create command
+            data = line.strip().split()
+
+            # assume rest could contain spaces, but it should be wrapped by ""
+            start = data[0]
+            end = data[1]
+            name = " ".join(data[2:])
+
+            command = cmd_string.format(st=start, en=end, nm=name)
+
+            # execute command
+            subprocess.call(command, shell=True)
+    return
+
+main()
+
