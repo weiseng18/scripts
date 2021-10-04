@@ -1,0 +1,10 @@
+#! /bin/bash
+
+find \
+. \
+-name '*.tex' \
+\
+| fzf \
+--prompt=' > ' \
+\
+| (xargs -I{} nvim "{}")
