@@ -1,9 +1,5 @@
 #! /bin/bash
 
-# fzf can show relative path
-# so by cd to the folder, reduce the file name length
-cd $REPOS'/notes/uni'
-
 find \
 . \
 -name '*.pdf' \
