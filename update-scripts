@@ -3,7 +3,7 @@
 # ensure that no $file has the same name as any other important local bin file
 
 # append folders with spaces as necessary
-ACTUAL_FOLDERS="$SCRIPTS/system/* $SCRIPTS/image/* $SCRIPTS/music/*"
+ACTUAL_FOLDERS="$SCRIPTS/system/* $SCRIPTS/system/launchers/* $SCRIPTS/image/* $SCRIPTS/music/*"
 
 for file in $ACTUAL_FOLDERS; do
   ln -sf $file ~/.local/bin/
