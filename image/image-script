@@ -34,6 +34,15 @@ def scaleImage(fileName, scaleFactor, outName):
 
     return
 
+def scaleImageUnequal(fileName, xScaleFactor, yScaleFactor, outName):
+    im = Image.open(fileName)
+    (w, h) = im.size
+    im = im.resize((int(w * xScaleFactor), int(h * yScaleFactor)), Image.LANCZOS)
+
+    im.save(outName)
+
+    return
+
 def main():
     # unpack args
     args = sys.argv
@@ -50,6 +59,9 @@ def main():
         print("output_filename is optional. If not provided, then the image crop is displayed only.")
         print("\n---- image-script scale ----")
         print("image-script scale filename scaleFactor output_filename\n")
+        print("scaleFactor is normalized. 1.0 means original size.")
+        print("\n---- image-script scaleu ----")
+        print("image-script scaleu filename xScaleFactor yScaleFactor output_filename\n")
         print("scaleFactor is normalized. 1.0 means original size.")
         return
 
@@ -77,6 +89,17 @@ def main():
         scaleFactor = float(args[3])   # scaling factor (multiplier)
         outName = args[4]
         scaleImage(fileName, scaleFactor, outName)
+
+    elif action == "scaleu":
+        if LEN < 5:
+            print("Insufficient arguments")
+            return
+
+        fileName = args[2]             # original image file name
+        xScaleFactor = float(args[3])  # scaling factor (multiplier)
+        yScaleFactor = float(args[4])  # scaling factor (multiplier)
+        outName = args[5]
+        scaleImageUnequal(fileName, xScaleFactor, yScaleFactor, outName)
 
     else:
         print("Unknown action")
